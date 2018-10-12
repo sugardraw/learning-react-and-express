@@ -1,3 +1,4 @@
+let data = require('./todos.json');
 
 
 export function randomArray(array) {
@@ -10,3 +11,6 @@ export function getRandomTagLine() {
     return randomArray(tagLines);
 }
 
+export function calculateMembers(){
+    return data.length;
+}
