@@ -4,8 +4,9 @@ import { Component } from 'react';
 
 
 import App from './App';
-import Help from './Help';
+import HowTo from './HowTo';
 import NotFound from './NotFound';
+
 
 
 
@@ -16,7 +17,7 @@ class Router extends Component {
             <BrowserRouter>
                 <Switch>
                     <Route exact path = "/" component = {App} />
-                    <Route path = "/help" component = {Help} />
+                    <Route exact path = "/HowTo" component = {HowTo} />
                     <Route component = {NotFound} />
                 </Switch>
             </BrowserRouter>

@@ -1,26 +1,79 @@
-import React from "react";
+import React, { Component } from "react";
 
-class ToDoList extends React.Component {
+
+class ToDoList extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tasks: [],
+            images: []
+
+        };
+
+
+    }
+
+    componentWillMount() {
+        fetch('https://jsonplaceholder.typicode.com/todos')
+            .then(response => response.json())
+            .then(data => {
+                let task = data.map((item, i) => {
+                    if (i < 6) {
+                        return (
+                            <div className="w-25">
+
+                                <div className="card p-3 m-3">
+                                    <div className="card-header mb-3">
+                                        <h3 className="p-2">{item.title}</h3>
+                                    </div>
+                                    <span className="badge badge-pill badge-danger m-auto p-3 ml-2">
+                                        {item.id}
+                                    </span>
+
+                                    <div className="card-body">
+                                        <p>{item.userId}</p>
+                                        <p><mark>{item.title}</mark></p>
+                                    </div>
+                                    <img src="" alt="responsive-image" className="img-fluid" />
+                                </div>
+                            </div>
+
+                        )
+                    }
+                }
+                )
+                this.setState({ tasks: task })
+            })
+
+
+    }
+
     render() {
         return (
-            <div className="row  mt-3 pt-3 text-center">
-                <div className="col alert bg-light text-primary m-3 p-3">
-                    1 of 3.<br/>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse libero repellendus earum cumque tempore nesciunt eius ut eaque vel animi?
-                </div>
-                <div className="col alert bg-light text-primary m-3 p-3">
-                    2 of 3.<br/>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse libero repellendus earum cumque tempore nesciunt eius ut eaque vel animi?
-                    
-                </div>
-                <div className="col alert bg-light text-primary m-3 p-3">
-                    3 of 3.<br/>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse libero repellendus earum cumque tempore nesciunt eius ut eaque vel animi?
-                    
-                </div>
+            <div className="row p-4 m-4">
+                {this.state.tasks}
             </div>
         )
     }
 }
-
 export default ToDoList;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
